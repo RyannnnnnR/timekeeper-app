@@ -35,8 +35,13 @@ User.hasMany(Team);
 User.hasMany(Entry);
 User.hasOne(Role);
 Entry.hasOne(Team);
+sequelize.User = User;
+sequelize.Role = Role;
+sequelize.Team = Team;
+sequelize.Entry = Entry;
 //Create tables Force drops if tables exist
 sequelize.sync();
+
 
 app.use('/', index);
 app.post('/test', authorization.authorizeWithPermission('admin'), function(req,res){
