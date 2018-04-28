@@ -17,7 +17,13 @@ const sequelize = new Sequelize('database', 'username', 'password', {
         idle: 10000
     }
 });
-
+sequelize.authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
 app.use('/', index);
 app.post('/test', authorization.authorizeWithPermission('admin'), function(req,res){
   res.json({token: "HI"})
