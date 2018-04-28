@@ -1,26 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
-    dialect: 'mysql',
-    operatorsAliases: false,
+const models = require('../models');
 
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-});
-const Role = sequelize.import('../models/Role');
 // check everything works
 router.get('/', function (req, res) {
-    Role.findById(1).then(role =>{
-        console.log(role.role);
-    });
-
+  models.Role.findById(1).then(function(role) {
+    if(role){
+      console.log(role.roleName);
+    }else{
+      console.log('nothing');
+    }
+  })
 });
 router.post('/login', function(req, res){
   const user = {
