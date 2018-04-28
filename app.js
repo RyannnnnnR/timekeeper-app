@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const index = require('./api/index');
@@ -5,8 +6,8 @@ const authorization = require('./api/authorization');
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('database', 'username', 'password', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+    host: process.env.DB_HOST,
     dialect: 'mysql',
     operatorsAliases: false,
 
