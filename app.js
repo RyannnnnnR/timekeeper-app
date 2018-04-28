@@ -25,6 +25,19 @@ sequelize.authenticate()
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
+//Add associations
+const User = sequelize.import('./models/User');
+const Team = sequelize.import('./models/Team');
+const Role = sequelize.import('./models/Role');
+const Entry = sequelize.import('./models/Entry');
+User.hasMany(Team);
+User.hasMany(Entry);
+User.hasOne(Role);
+Entry.hasOne(Team);
+//Create tables Force drops if tables exist
+sequelize.sync();
+
 app.use('/', index);
 app.post('/test', authorization.authorizeWithPermission('admin'), function(req,res){
   res.json({token: "HI"})
