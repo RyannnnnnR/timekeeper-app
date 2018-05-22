@@ -1,6 +1,5 @@
 //Authorization middleware for jwt
 const jwt = require('jsonwebtoken')
-
 const authorizeWithPermission = (role) => {
   return (req,res,next) => {
   verifyToken(req,res, function(){
@@ -11,12 +10,12 @@ const authorizeWithPermission = (role) => {
           res.status(403).json({message: "Authorization failed. Invalid Permission"});
         }
       }else{
-        res.status(403).json({message: "Authorization failed. Unrognisable Permission"});
+        res.status(403).json({message: "Authorization failed. Unrecognisable Permission"});
       }
   })
 }
 }
-
+//Verify token/login
 const verifyToken = (req,res,next) => {
  const bearerHeader = req.headers['authorization'];
  if(typeof bearerHeader !== 'undefined') {

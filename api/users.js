@@ -1,5 +1,5 @@
 var express = require('express')
-const authorization = require('authorization');
+const authorization = require('./middleware/authorization');
 var router = express.Router()
 
 // check everything works
@@ -13,4 +13,4 @@ router.get('/users', authorization.authorizeWithPermission('admin'), function (r
 //update user
 
 
-module.exports = router
+module.exports = router;
