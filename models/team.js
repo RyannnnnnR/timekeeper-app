@@ -1,10 +1,20 @@
 'use strict';
+
+const {
+    Model
+} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  var Team = sequelize.define('Team', {
-    teamName: DataTypes.STRING
-  }, {});
-  Team.associate = function(models) {
-    // associations can be defined here
-  };
-  return Team;
+    class Team extends Model {
+        static associate(models) {
+            Team.hasOne(models.User, { foreignKey: "teamId" })
+        }
+    }
+    Team.init({
+        teamName: DataTypes.STRING,
+    }, {
+        sequelize,
+        modelName: 'Team',
+    });
+    return Team;
 };

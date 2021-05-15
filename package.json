@@ -1,22 +1,28 @@
 {
-  "name": "timekeeper-api",
-  "version": "1.0.0",
-  "description": "backend api for timekeeper",
-  "main": "\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Capp.js)",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^2.0.1",
-    "body-parser": "^1.18.3",
-    "dotenv": "^5.0.1",
-    "express": "^4.16.3",
-    "jsonwebtoken": "^8.2.1",
-    "mysql2": "^1.5.3",
-    "nodemon": "^1.17.3",
-    "npm": "^6.0.1",
-    "sequelize": "^4.37.6"
-  }
+    "name": "timekeeper-api",
+    "version": "1.0.0",
+    "description": "backend api for timekeeper",
+    "main": "\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Capp.js)",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build:db": "sequelize-cli db:migrate  &&  sequelize-cli db:seed:all"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.18.3",
+        "dotenv": "^5.0.1",
+        "express": "^4.16.3",
+        "jsonwebtoken": "^8.2.1",
+        "mysql2": "^1.5.3",
+        "npm": "^6.0.1",
+        "sequelize": "^4.37.6"
+    },
+    "devDependencies": {
+        "faker": "^5.5.3",
+        "nodemon": "^2.0.7",
+        "sequelize-cli": "^6.2.0"
+    }
 }

@@ -1,10 +1,23 @@
 'use strict';
+
+const {
+    Model
+} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-    var Entry = sequelize.define('Entry', {
+    class Entry extends Model {
+        static associate(models) {
+            Entry.belongsTo(models.User, { foreignKey: "entryId" })
+        }
+    };
+    Entry.init({
         description: DataTypes.STRING,
         timeAdded: DataTypes.TIME,
-        teamId: DataTypes.INTEGER,
+        userId: DataTypes.INTEGER,
         dateAdded: DataTypes.DATE
-    }, {});
+    }, {
+        sequelize,
+        modelName: 'Entry',
+    });
     return Entry;
 };
