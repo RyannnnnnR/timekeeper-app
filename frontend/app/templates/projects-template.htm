@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="accordion" id="accordionExample" >
+        <div ng-repeat="project in projects">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#{{project.name}}" aria-expanded="true" aria-controls="collapseOne">
+                        {{project.name}}({{calculateTotalTime(project.name)}})
+                    </button>
+                </h5>
+            </div>
+
+            <div id="{{project.name}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <ul>
+                        <li ng-repeat="member in project.members">{{member}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
