@@ -14,21 +14,20 @@
   },
   "devDependencies": {
     "angular-mocks": "^1.7.5",
-    "cpx": "^1.2.1",
+    "copy": "^0.3.2",
     "http-server": "^0.12.3",
     "jasmine-core": "^3.3.0",
     "karma": "^6.3.2",
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^1.1.2",
-    "protractor": "^5.4.1"
+    "protractor": "^7.0.0"
   },
   "scripts": {
     "postinstall": "npm run copy-libs",
     "update-deps": "npm update",
     "postupdate-deps": "npm run copy-libs",
-    "copy-libs": "cpx \"node_modules/{angular,angular-*,html5-boilerplate/dist}/**/*\" app/lib -C",
-    "copy-assets": "cpx \"node_modules/bootstrap-icons/bootstrap-icons.svg\" app/assets/img -C",
+    "copy-libs": "copy \"node_modules/{angular,angular-*,html5-boilerplate/dist}/**/*\" app/lib",
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1 ./app",
     "pretest": "npm install",
