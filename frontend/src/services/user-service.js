@@ -1,14 +1,14 @@
 app.factory("UserService", function() {
     return {
-        isUserLoggedIn() {
+        isUserLoggedIn: function() {
             return localStorage.getItem('user') != null;
         },
-        login(username, password) {
+        login: function(username, password) {
             localStorage.setItem('user', {});
         },
-        logout() {
+        logout: function() {
             localStorage.removeItem('user');
         },
-        hasRoles(role) {},
-    }
-})
+        hasRoles: function(role) {},
+    };
+});

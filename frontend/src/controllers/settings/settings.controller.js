@@ -1,4 +1,4 @@
 app.controller('settingsCtrl', function($scope){
-    $scope.message = "Settings";
+    $scope.message = "Settings!";
     
 });

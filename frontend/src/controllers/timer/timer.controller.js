@@ -135,7 +135,7 @@ app.controller('timerCtrl',  function($scope, $timeout, $log, entryFactory, proj
         if (mode === 'day') {
             var dayToCheck = new Date(date).setHours(0,0,0,0);
 
-            for (var i = 0; i < $scope.events.length; i++) {
+            for (var i = 0; i < $scope.events.length; i += 1) {
                 var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
 
                 if (dayToCheck === currentDay) {
@@ -152,7 +152,7 @@ app.controller('timerCtrl',  function($scope, $timeout, $log, entryFactory, proj
         $scope.mode = "Log Session";
         state = 1;
         $scope.running = true;
-        $scope.counter++;
+        $scope.counter += 1;
         $scope.timer = moment().hour(0).minute(0).second($scope.counter).format('HH : mm : ss');
         // timer expired, restart timer
         setTimer();
