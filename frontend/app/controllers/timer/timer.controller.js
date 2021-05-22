@@ -1,28 +1,6 @@
 
-app.controller('timerCtrl',  function($scope, $timeout, $uibModal, $log, entryFactory){
+app.controller('timerCtrl',  function($scope, $timeout, $log, entryFactory, projectsFactory){
     $scope.entries =  entryFactory.getEntries();
-    console.log($scope.entries);
-    $scope.openModal = function (size) {
-        var modalInstance = $uibModal.open({
-            templateUrl: 'loginregister.html',
-            controller: 'ModalInstanceCtrl',
-            size: size,
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
-        });
-        modalInstance.result.then(function (selectedItem) {
-            $log.info('Modal closed at: ' + new Date());
-            $scope.selected = selectedItem;
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-});
-app.controller('ModalInstanceCtrl', function ($scope,$uibModalInstance, $timeout, entryFactory, projectsFactory) {
-
     $scope.model = {
         modalType: 'select'
     };
@@ -232,14 +210,5 @@ app.controller('ModalInstanceCtrl', function ($scope,$uibModalInstance, $timeout
         }
 
     };
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-
-    }
-    $scope.close = function(){
-        $uibModalInstance.dismiss('cancel');
-        if(state != 0) {
-            stopTimer();
-        }
-    }
+    
 });

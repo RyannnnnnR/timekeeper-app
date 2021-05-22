@@ -1,27 +1,43 @@
-var app = angular.module('timekeeper', ['ngRoute','ui.bootstrap', 'chart.js']);
+var app = angular.module('timekeeper', ['ngRoute']);
 app.config(function($routeProvider) {
    $routeProvider
     .when("/", {
-        templateUrl: "app/templates/timer-template.htm",
+        templateUrl: "templates/timer.template.htm",
         controller: 'timerCtrl',
-   }).when("/graphs", {
-       templateUrl: "app/templates/graphs-template.htm",
+        requireAuth: true
+    }).when("/graphs", {
+        templateUrl: "templates/graphs.template.htm",
         controller: 'graphsCtrl',
-   }).when("/projects", {
-       templateUrl: "app/templates/projects-template.htm",
-       controller: 'projectsCtrl',
-   }).when("/groups", {
-       templateUrl: "app/templates/groups-template.htm",
+    }).when("/projects", {
+        templateUrl: "templates/projects.template.htm",
+        controller: 'projectsCtrl',
+    }).when("/groups", {
+        templateUrl: "templates/groups.template.htm",
         controller: 'groupsCtrl',
-   }).when("/settings", {
-       templateUrl: "app/templates/settings-template.htm",
+    }).when("/settings", {
+        templateUrl: "templates/settings.template.htm",
         controller: 'settingsCtrl',
-   });
+    }).when('/login', {
+        templateUrl : 'views/login.html',
+        controller: 'loginCtrl'
+    }).otherwise({ redirectTo: '/login' });
 });
-app.controller('navCtrl', function($scope, $location){
-    $scope.location=$location.path().replace("/","");
-    $scope.$on('$locationChangeSuccess', function () {
-        $scope.location = $location.path().replace('/', '');
+app.controller('globalCtrl', function ($scope, $location, $window, UserService) {
+    // intercept the route change event
+    $scope.$on('$routeChangeStart', function (event, url) {
+        console.log("Got")
+        // check if the custom property exist
+        if (url.requireAuth && !UserService.isUserLoggedIn()) {
+            // user isn’t authenticated
+            $location.path("/login");
+        }
+        if (UserService.isUserLoggedIn()) {
+            $scope.isLoggedIn = true;
+        }
+        $scope.logout = function(){
+            UserService.logout();
+            $window.location.reload();
+        }
     });
 });
 app.factory('entryFactory', function() {
